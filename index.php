@@ -33,12 +33,12 @@
 	</div>
 </div>
 
-<div class="PhoneSubmit" ng-controller="SubmitDevices">
-	<h2>Submit your phone</h2>
+<div class="PhoneSubmit" ng-controller="SubmitDevices" ng-init="setDefault()">
+	<h2>Submit your <span id="phone-name">phone</span></h2>
 	<p>d ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
 		doloremque laudantium, totam rem aperiam.</p>
 		<div id="device">
-		test: {{selection}}
+			<img src="">
 		</div>
 		<form>
 			<select ng-model="selection">
@@ -47,30 +47,43 @@
 			<div class="animate-switch-container" ng-switch on="selection">
 
 			    <div ng-switch-when="Apple">
-			    	<select ng-model="appledeviceoption">
-			    		<option ng-repeat="device in appledevices" value="{{device}}">{{device}}</option>
+		<!-- 	    	<select 
+			    	ng-model="appledeviceoption"
+			    	ng-change="GetImage($scope)"
+			    	ng-options="c.text for c in appledevices">
+			    	<option value="" selected>Select Option</option>
+			    	</select> -->
+			    	<select 
+				    	class="devicedropdown" 
+				    	ng-model="appledeviceoption"
+				    	ng-init="setDefault()"
+				    	ng-change="GetImage()">
+			    		<option 
+			    			ng-repeat="device in appledevices" 
+			    			value="{{device.text}}" 
+			    			data-image="{{device.img}}">{{device.text}}
+			    		</option>
 			    	</select>
 			    	<select>
 			    		<option ng-repeat="size in appledevicessize" value="{{size}}">{{size}}</option>
 			    	</select>
 			    </div>
 
-
 			    <div ng-switch-when="Samsung">
-			      	<select>
-			    		<option ng-repeat="device in samsungdevices" value="{{device}}">{{device}}</option>
+			      	<select class="devicedropdown" ng-model="smsngdevice" ng-change="GetImage()">
+			    		<option ng-repeat="device in samsungdevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option> 
 			    	</select>
 			    </div>
 
 			    <div ng-switch-when="Nokia">
-			      	<select>
-			    		<option ng-repeat="device in nokiadevices" value="{{device}}">{{device}}</option>
+			      	<select class="devicedropdown" ng-model="nkiadeevices" ng-change="GetImage()">
+			    		<option ng-repeat="device in nokiadevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option>
 			    	</select>
 			    </div>
 
 			    <div ng-switch-when="Blackberry">
-			      	<select>
-			    		<option ng-repeat="device in blackberrydevices" value="{{device}}">{{device}}</option>
+			      	<select class="devicedropdown" ng-model="bbdevices" ng-change="GetImage()">
+			    		<option ng-repeat="device in blackberrydevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option>
 			    	</select>
 			    </div>			    
 
