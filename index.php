@@ -35,8 +35,7 @@
 
 <div class="PhoneSubmit" ng-controller="SubmitDevices" ng-init="setDefault()">
 	<h2>Submit your <span id="phone-name">phone</span></h2>
-	<p>d ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
-		doloremque laudantium, totam rem aperiam.</p>
+		<h5 id="phone-price"></h5>
 		<div id="device">
 			<img src="">
 		</div>
@@ -61,7 +60,9 @@
 			    		<option 
 			    			ng-repeat="device in appledevices" 
 			    			value="{{device.text}}" 
-			    			data-image="{{device.img}}">{{device.text}}
+			    			data-image="{{device.img}}"
+			    			data-price="{{device.price}}">{{device.text}}
+
 			    		</option>
 			    	</select>
 			    	<select>
@@ -71,30 +72,31 @@
 
 			    <div ng-switch-when="Samsung">
 			      	<select class="devicedropdown" ng-model="smsngdevice" ng-change="GetImage()">
-			    		<option ng-repeat="device in samsungdevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option> 
+			    		<option ng-repeat="device in samsungdevices" value="{{device.text}}" data-image="{{device.img}}" data-price="{{device.price}}">{{device.text}}</option> 
 			    	</select>
 			    </div>
 
 			    <div ng-switch-when="Nokia">
 			      	<select class="devicedropdown" ng-model="nkiadeevices" ng-change="GetImage()">
-			    		<option ng-repeat="device in nokiadevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option>
+			    		<option ng-repeat="device in nokiadevices" value="{{device.text}}" data-image="{{device.img}}" data-price="{{device.price}}">{{device.text}}</option>
 			    	</select>
 			    </div>
 
 			    <div ng-switch-when="Blackberry">
 			      	<select class="devicedropdown" ng-model="bbdevices" ng-change="GetImage()">
-			    		<option ng-repeat="device in blackberrydevices" value="{{device.text}}" data-image="{{device.img}}">{{device.text}}</option>
+			    		<option ng-repeat="device in blackberrydevices" value="{{device.text}}" data-image="{{device.img}}" data-price="{{device.price}}">{{device.text}}</option>
 			    	</select>
 			    </div>			    
 
 			    <div ng-switch-default>default</div>
 			</div>
 
-
-     		<label><input type="checkbox" class="checkbox"><span class="title">Not turning on?  <span><small>Totam rem aperiam, eaque ipsa quae</small></span></label>
-     		<label><input type="checkbox" class="checkbox"><span class="title">Broken Screen?<span><small>Totam rem aperiam, eaque ipsa quae</small></span></label>
-     		<label><input type="checkbox" class="checkbox"><span class="title">Home button broken? <span><small>Totam rem aperiam, eaque ipsa quae</small></span></label>
-     		<label><input type="checkbox" class="checkbox"><span class="title">Ratione voluptatem?  <span><small>Totam rem aperiam, eaque ipsa quae</small></span></label>
+			<label ng-repeat="problem in problems">
+				<input type="checkbox" class="checkbox" ng-model="problem.done" ng-change="TotalDevicePrice"><span class="title">{{problem.text}} <span><small>{{problem.description}}</small></span>
+				 {{problem.done}}
+			</label>
+			{{calculate}}
+			<a href="#" ng-click="calculate()" eatClick>calculate</a>
      		<input type="submit" value="Submit" class="submit">
 		</form>
 </div>
