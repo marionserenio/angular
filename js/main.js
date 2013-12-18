@@ -101,7 +101,11 @@ function SubmitDevices($scope) {
 		var deviceprice = $('.devicedropdown option:selected').data('price');
 
 		angular.forEach($scope.problems, function(value, deduction){
-			var total = deviceprice -= value.deduction;
+			if(value.done == true){
+				var total = deviceprice -= value.deduction;
+			}else{
+				
+			}
 			console.log(total);
 		});
 		$('#phone-price').text(deviceprice);

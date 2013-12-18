@@ -62,10 +62,10 @@
 			    			value="{{device.text}}" 
 			    			data-image="{{device.img}}"
 			    			data-price="{{device.price}}">{{device.text}}
-
 			    		</option>
 			    	</select>
 			    	<select>
+			    		<option> </option>
 			    		<option ng-repeat="size in appledevicessize" value="{{size}}">{{size}}</option>
 			    	</select>
 			    </div>
@@ -93,10 +93,8 @@
 
 			<label ng-repeat="problem in problems">
 				<input type="checkbox" class="checkbox" ng-model="problem.done" ng-change="TotalDevicePrice"><span class="title">{{problem.text}} <span><small>{{problem.description}}</small></span>
-				 {{problem.done}}
 			</label>
-			{{calculate}}
-			<a href="#" ng-click="calculate()" eatClick>calculate</a>
+			<a href="#" ng-click="calculate()" eatClick>Calculate Phone Amount</a>
      		<input type="submit" value="Submit" class="submit">
 		</form>
 </div>
